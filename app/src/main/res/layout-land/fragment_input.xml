@@ -11,8 +11,7 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_zero"
-        app:layout_constraintVertical_weight="1"
+        android:layout_height="wrap_content"
         android:gravity="bottom"
         android:text="@string/input_title"
         android:textAlignment="center"
@@ -25,7 +24,7 @@
 
     <TextView
         android:id="@+id/subtitle"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/spacing_zero"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_double"
         android:layout_marginBottom="@dimen/spacing_double"
@@ -34,23 +33,23 @@
         android:textSize="@dimen/fontsize_subtitle"
         android:lineSpacingExtra="@dimen/spacing_normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/input_layout"
         app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintBottom_toTopOf="@id/input_layout"/>
+        app:layout_constraintBottom_toTopOf="@id/submit_button"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout"
         style="@style/input_layout"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/spacing_zero"
         android:layout_height="wrap_content"
         android:gravity="top"
         android:hint="@string/input_hint"
         app:endIconMode="clear_text"
         app:hintEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/subtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitle"
-        app:layout_constraintBottom_toTopOf="@id/submit_button">
+        app:layout_constraintTop_toTopOf="@id/subtitle"
+        app:layout_constraintBottom_toBottomOf="@id/subtitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_text"
@@ -71,19 +70,10 @@
         android:paddingBottom="@dimen/spacing_double"
         android:text="@string/submit_button_label"
         android:textSize="@dimen/fontsize_button"
-        app:layout_constraintBottom_toTopOf="@id/spacing_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_layout" />
 
-    <View
-        android:id="@+id/spacing_view"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/spacing_zero"
-        app:layout_constraintVertical_weight="3"
-        app:layout_constraintTop_toBottomOf="@id/submit_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

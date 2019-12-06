@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GithubAccountSearch</string>
+    <string name="input_hint">Name des Github-Kontos</string>
+    <string name="submit_button_label">ok</string>
+    <string name="input_title">Auf Entdeckungstour?</string>
+    <string name="input_description">Gewünschten Accountnamen\neintragen und loslegen!</string>
+</resources>

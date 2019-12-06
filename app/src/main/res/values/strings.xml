@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">GithubAccountSearch</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_hint">github account name</string>
+    <string name="submit_button_label">ok</string>
+    <string name="input_title">Curious?</string>
+    <string name="input_description">Enter the  github account name\nyou want to look up!</string>
 </resources>
