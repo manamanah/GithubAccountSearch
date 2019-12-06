@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.android.githubaccountsearch.models.GitRepository" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/spacing_normal"
+        android:padding="@dimen/spacing_double"
+        android:elevation="@dimen/elevation">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontsize_title"
+            android:textStyle="bold"
+            tools:text="Repo Title"
+            android:linksClickable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/divider_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/forks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/timeRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2015 - 2019"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintBottom_toTopOf="@id/language"/>
+
+        <TextView
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{viewModel.language == null ? "" : viewModel.language}'
+            android:textStyle="italic"
+            android:visibility="@{viewModel.language == null ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/forks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/timeRange"
+            tools:text="Kotlin" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_double"
+            android:visibility="@{viewModel.description == null ? View.INVISIBLE : View.VISIBLE}"
+            android:text='@{viewModel.description == null ? "" : viewModel.description}'
+            tools:text="This is the description."
+            app:layout_constraintTop_toBottomOf="@id/divider_bottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/license"/>
+
+        <TextView
+            android:id="@+id/license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:visibility="@{viewModel.license == null ? View.INVISIBLE : View.VISIBLE}"
+            android:text='@{viewModel.license == null ? "" : viewModel.license.name}'
+            tools:text="License info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description"/>
+
+        <TextView
+            android:id="@+id/stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@android:drawable/btn_star_big_on"
+            android:drawablePadding="@dimen/spacing_normal"
+            android:gravity="center_vertical"
+            android:text="@{Integer.toString(viewModel.starsCount)}"
+            app:layout_constraintBottom_toTopOf="@id/forks"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:text="400" />
+
+        <TextView
+            android:id="@+id/forks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/fork"
+            android:drawablePadding="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_half"
+            android:paddingStart="@dimen/spacing_normal"
+            android:gravity="center_vertical"
+            android:text="@{Integer.toString(viewModel.forksCount)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stars"
+            tools:text="42" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
