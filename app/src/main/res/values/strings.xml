@@ -6,4 +6,5 @@
     <string name="input_title">Curious?</string>
     <string name="input_description">Enter the  github account name\nyou want to look up!</string>
     <string name="avatar_desc">The avatar image of the github account.</string>
+    <string name="invalid_input">Provide input for account lookup!</string>
 </resources>

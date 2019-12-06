@@ -53,7 +53,7 @@
         app:layout_constraintBottom_toTopOf="@id/submit_button">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_text"
+            android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"

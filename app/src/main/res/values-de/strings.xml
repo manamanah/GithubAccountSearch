@@ -6,4 +6,5 @@
     <string name="input_title">Auf Entdeckungstour?</string>
     <string name="input_description">Gewünschten Accountnamen\neintragen und loslegen!</string>
     <string name="avatar_desc">Avatarbild des Github-Kontos.</string>
+    <string name="invalid_input">Ohne Eingabe kann \nkeine Suche gestartet werden!</string>
 </resources>
