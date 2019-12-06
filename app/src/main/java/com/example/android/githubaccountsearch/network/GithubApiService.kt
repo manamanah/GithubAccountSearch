@@ -11,5 +11,5 @@ interface GithubApiService {
     fun getAccountAsync(@Path("username")username: String) : Deferred<Account>
 
     @GET("users/{username}/repos")
-    fun getAccountsRepos(@Path("username")username: String) : Deferred<List<GitRepository>>
+    fun getAccountsReposAsync(@Path("username")username: String) : Deferred<List<GitRepository>>
 }
