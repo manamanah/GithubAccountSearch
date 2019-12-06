@@ -5,6 +5,8 @@
     <dimen name="spacing_double">16dp</dimen>
 
     <dimen name="button_min_width">200dp</dimen>
+    <dimen name="avatar_img_width">64dp</dimen>
+    <dimen name="divider_height">2dp</dimen>
 
     <!--FONT SIZES-->
     <dimen name="fontsize_title">24sp</dimen>
