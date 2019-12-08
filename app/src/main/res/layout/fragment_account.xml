@@ -1,61 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/account_rootlayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.AccountFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/account_name"
-        android:layout_width="@dimen/spacing_zero"
-        android:layout_height="@dimen/spacing_zero"
-        android:layout_margin="@dimen/spacing_normal"
-        android:gravity="bottom"
-        android:textStyle="bold"
-        android:textSize="@dimen/fontsize_title"
-        tools:text="Account Name"
-        app:layout_constraintTop_toTopOf="@id/avatar_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/avatar_img"
-        app:layout_constraintBottom_toTopOf="@id/divider"/>
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.example.android.githubaccountsearch.enums.GitRequestStatus"/>
+        <variable
+            name="viewModel"
+            type="com.example.android.githubaccountsearch.viewmodels.AccountViewModel" />
+    </data>
 
-    <ImageView
-        android:id="@+id/avatar_img"
-        android:layout_width="@dimen/avatar_img_width"
-        android:layout_height="@dimen/avatar_img_width"
-        android:layout_margin="@dimen/spacing_normal"
-        android:scaleType="fitCenter"
-        android:contentDescription="@string/avatar_desc"
-        tools:src="@drawable/ic_launcher_background"
-        app:layout_constraintEnd_toStartOf="@id/account_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="@dimen/spacing_zero"
-        android:layout_height="@dimen/divider_height"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginEnd="@dimen/spacing_normal"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@id/account_name"
-        app:layout_constraintBottom_toBottomOf="@id/avatar_img"
-        app:layout_constraintStart_toEndOf="@id/avatar_img"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/repository_recycler"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/account_rootlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_normal"
-        tools:itemCount="5"
-        tools:listitem="@layout/repository_item"
-        app:layout_constraintTop_toBottomOf="@id/avatar_img"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_height="match_parent"
+        android:visibility="@{viewModel.status == GitRequestStatus.SUCCESS ? View.VISIBLE : View.GONE}"
+        tools:context=".views.AccountFragment">
+
+        <TextView
+            android:id="@+id/account_name"
+            android:layout_width="@dimen/spacing_zero"
+            android:layout_height="@dimen/spacing_zero"
+            android:layout_margin="@dimen/spacing_normal"
+            android:gravity="bottom"
+            android:textStyle="bold"
+            android:textSize="@dimen/fontsize_title"
+            tools:text="Account Name"
+            app:layout_constraintTop_toTopOf="@id/avatar_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/avatar_img"
+            app:layout_constraintBottom_toTopOf="@id/divider"/>
+
+        <ImageView
+            android:id="@+id/avatar_img"
+            android:layout_width="@dimen/avatar_img_width"
+            android:layout_height="@dimen/avatar_img_width"
+            android:layout_margin="@dimen/spacing_normal"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/avatar_desc"
+            tools:src="@drawable/ic_launcher_background"
+            app:imageUrl="@{viewModel.account.avatar}"
+            app:layout_constraintEnd_toStartOf="@id/account_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="@dimen/spacing_zero"
+            android:layout_height="@dimen/divider_height"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/account_name"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_img"
+            app:layout_constraintStart_toEndOf="@id/avatar_img"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/repository_recycler"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="@dimen/spacing_normal"-->
+<!--            tools:itemCount="5"-->
+<!--            tools:listitem="@layout/repository_item"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/avatar_img"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

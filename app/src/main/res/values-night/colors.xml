@@ -20,4 +20,5 @@
     <color name="OnBackgroundColor">#FFFFFF</color>
     <color name="OnSurfaceColor">#EEEEEE</color>
     <color name="OnErrorColor">#000000</color>
+
 </resources>

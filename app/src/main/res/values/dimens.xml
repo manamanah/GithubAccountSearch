@@ -15,4 +15,5 @@
     <dimen name="fontsize_title">24sp</dimen>
     <dimen name="fontsize_subtitle">18sp</dimen>
     <dimen name="fontsize_button">18sp</dimen>
+
 </resources>
