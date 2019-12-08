@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.githubaccountsearch.Repository
 import com.example.android.githubaccountsearch.enums.GitRequestStatus
 import com.example.android.githubaccountsearch.models.Account
+import com.example.android.githubaccountsearch.models.GitRepository
 import kotlinx.coroutines.launch
 
 
@@ -20,6 +21,10 @@ class AccountViewModel : ViewModel(){
     val account : LiveData<Account>
         get() = _account
 
+    private val _repos = MutableLiveData<List<GitRepository>>()
+    val repos : LiveData<List<GitRepository>>
+        get() = _repos
+
 
     fun getAccount(profileName: String) {
 
@@ -32,7 +37,11 @@ class AccountViewModel : ViewModel(){
             else{
                 if (account != null){
                     _account.postValue(account)
-                    _status.postValue(accountStatus)
+
+                    val (repos, reposStatus) = Repository.getAccountRepos(profileName)
+
+                    _repos.postValue(repos)
+                    _status.postValue(reposStatus)
                 }
             }
         }

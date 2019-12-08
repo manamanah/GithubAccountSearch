@@ -1,14 +1,12 @@
 package com.example.android.githubaccountsearch.views
 
 
-import android.content.Context
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
@@ -16,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.example.android.githubaccountsearch.R
+import com.example.android.githubaccountsearch.adapters.GitRepositoryAdapter
 import com.example.android.githubaccountsearch.databinding.FragmentAccountBinding
 import com.example.android.githubaccountsearch.viewmodels.AccountViewModel
 
@@ -25,6 +24,8 @@ class AccountFragment : Fragment() {
     private val inputArg: AccountFragmentArgs by navArgs()
 
     private lateinit var viewModel: AccountViewModel
+    private val recyclerAdapter = GitRepositoryAdapter()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +52,14 @@ class AccountFragment : Fragment() {
         // adapt actionbar
         val supportActionBar = (activity as AppCompatActivity?)?.supportActionBar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // setup recyclerView
+        binding.repositoryRecycler.adapter = recyclerAdapter
+
+        viewModel.repos.observe(viewLifecycleOwner, Observer { list ->
+            val tempAdapter = recyclerAdapter as GitRepositoryAdapter
+            tempAdapter.updateReposList(list)
+        })
 
         viewModel.getAccount(inputArg.accountName)
 
