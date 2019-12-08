@@ -11,9 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-
 import com.example.android.githubaccountsearch.R
 import kotlinx.android.synthetic.main.fragment_input.*
+import kotlinx.android.synthetic.main.fragment_input.view.*
 
 
 class InputFragment : Fragment() {
@@ -27,6 +27,10 @@ class InputFragment : Fragment() {
         // adapt actionbar
         val supportActionBar = (activity as AppCompatActivity?)?.supportActionBar
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        view.input_rootlayout.setOnClickListener {
+            closeKeyboard()
+        }
 
         return view
     }
@@ -42,12 +46,15 @@ class InputFragment : Fragment() {
                 val profileName = input.text.toString().trim()
                 input.text = null
 
-                // close softKeyboard
-                val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                closeKeyboard()
 
                 findNavController().navigate(InputFragmentDirections.actionInputFragmentToAccountFragment(profileName))
             }
         }
+    }
+
+    private fun closeKeyboard(){
+        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 }
