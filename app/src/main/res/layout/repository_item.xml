@@ -14,9 +14,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_normal"
         android:padding="@dimen/spacing_double"
+        android:background="@color/surfaceColor"
         android:elevation="@dimen/elevation">
 
         <TextView
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fontsize_title"
             android:textStyle="bold"
+            android:text="@{viewModel.name}"
             tools:text="Repo Title"
             android:linksClickable="true"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,8 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
-            android:visibility="@{viewModel.license == null ? View.INVISIBLE : View.VISIBLE}"
-            android:text='@{viewModel.license == null ? "" : viewModel.license.name}'
+            android:text='@{viewModel.license == null ? @string/no_license : viewModel.license.name}'
+            android:textStyle="italic"
             tools:text="License info"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
