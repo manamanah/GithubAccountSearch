@@ -46,4 +46,10 @@ class AccountViewModel : ViewModel(){
             }
         }
     }
+
+    fun reset(){
+        _status.value = GitRequestStatus.LOADING
+        _account.value = null
+        _repos.value = null
+    }
 }
