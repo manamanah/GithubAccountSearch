@@ -6,6 +6,9 @@
     <string name="input_title">Auf Entdeckungstour?</string>
     <string name="input_description">Gewünschten Accountnamen\neintragen und loslegen!</string>
     <string name="avatar_desc">Avatarbild des Github-Kontos.</string>
-    <string name="invalid_input">Ohne Eingabe kann \nkeine Suche gestartet werden!</string>
+    <string name="invalid_input">Ohne gültige Eingabe kann \nkeine Suche gestartet werden!\n(Buchstaben, Zahlen, Bindestrich)</string>
     <string name="no_license">Keine Lizenz-Information</string>
+    <string name="no_account">Es existiert kein Github-Account\nunter diesem Namen.</string>
+    <string name="no_repos">Dieses Github-Konto besitzt \nkeine (öffentlichen) Repositories.</string>
+    <string name="loading_img_desc">Ladestatus-Bild</string>
 </resources>

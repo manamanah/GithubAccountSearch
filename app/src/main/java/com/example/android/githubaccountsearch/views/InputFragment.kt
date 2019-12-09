@@ -39,7 +39,9 @@ class InputFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         submit_button.setOnClickListener{
-            if (input.text?.trim().isNullOrEmpty()){
+            val inputText = input.text?.trim()
+
+            if (inputText.isNullOrEmpty() || inputText.any { !(it.isLetter() || it.isDigit() || it == '-')}){
                 Toast.makeText(activity, context?.getString(R.string.invalid_input), Toast.LENGTH_LONG). show()
             }
             else {
