@@ -8,7 +8,7 @@ import com.example.android.githubaccountsearch.R
 @BindingAdapter("imageUrl")
 fun setImage(view: ImageView, src: String?){
     if (src.isNullOrEmpty()){
-        view.setImageResource(R.drawable.error_image)
+        view.setImageResource(R.drawable.loading_animation)
     }
     else {
         Glide.with(view)
