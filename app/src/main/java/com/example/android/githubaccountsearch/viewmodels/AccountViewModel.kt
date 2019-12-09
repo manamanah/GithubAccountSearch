@@ -26,18 +26,18 @@ class AccountViewModel : ViewModel(){
         get() = _repos
 
 
-    fun getAccount(profileName: String) {
 
+    fun getAccount(profileName: String) {
         viewModelScope.launch {
             val (account, accountStatus) = Repository.getAccount(profileName)
 
-            if (accountStatus == GitRequestStatus.ERROR ) {
+            if (accountStatus == GitRequestStatus.ERROR) {
                 _status.postValue(accountStatus)
             }
             else{
-                if (account != null){
-                    _account.postValue(account)
+                _account.postValue(account)
 
+                if (account != null){
                     val (repos, reposStatus) = Repository.getAccountRepos(profileName)
 
                     _repos.postValue(repos)

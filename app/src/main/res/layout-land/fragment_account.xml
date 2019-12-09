@@ -7,6 +7,7 @@
     <data>
         <import type="android.view.View"/>
         <import type="com.example.android.githubaccountsearch.enums.GitRequestStatus"/>
+        <import type="com.example.android.githubaccountsearch.models.Account"/>
         <variable
             name="viewModel"
             type="com.example.android.githubaccountsearch.viewmodels.AccountViewModel" />
@@ -16,7 +17,6 @@
         android:id="@+id/account_rootlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="@{viewModel.status == GitRequestStatus.SUCCESS ? View.VISIBLE : View.GONE}"
         tools:context=".views.AccountFragment">
 
         <TextView
@@ -63,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_zero"
             android:layout_margin="@dimen/spacing_normal"
+            android:visibility="@{viewModel.status == GitRequestStatus.SUCCESS ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:itemCount="3"
@@ -72,6 +73,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <ImageView
+            android:id="@+id/loading_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_double"
+            android:src="@drawable/loading_animation"
+            android:contentDescription="@string/loading_img_desc"
+            android:visibility="@{viewModel.status == GitRequestStatus.LOADING ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/status_display"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_zero"
+            android:layout_margin="@dimen/spacing_double"
+            android:textAlignment="center"
+            android:lineSpacingExtra="@dimen/spacing_normal"
+            tools:text="@string/no_account"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
