@@ -32,16 +32,16 @@ class AccountViewModel : ViewModel(){
             val (account, accountStatus) = Repository.getAccount(profileName)
 
             if (accountStatus == GitRequestStatus.ERROR) {
-                _status.postValue(accountStatus)
+                _status.value = accountStatus
             }
             else{
-                _account.postValue(account)
+                _account.value = account
 
                 if (account != null){
                     val (repos, reposStatus) = Repository.getAccountRepos(profileName)
 
-                    _repos.postValue(repos)
-                    _status.postValue(reposStatus)
+                    _repos.value = repos
+                    _status.value = reposStatus
                 }
             }
         }
