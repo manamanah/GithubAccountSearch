@@ -3,8 +3,6 @@ package com.example.android.githubaccountsearch.views
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.example.android.githubaccountsearch.R
 import com.example.android.githubaccountsearch.adapters.GitRepositoryAdapter
+import com.example.android.githubaccountsearch.adapters.LanguageAdapter
 import com.example.android.githubaccountsearch.databinding.FragmentAccountBinding
 import com.example.android.githubaccountsearch.enums.GitRequestStatus
 import com.example.android.githubaccountsearch.viewmodels.AccountViewModel
-import kotlin.NullPointerException
 
 
 class AccountFragment : Fragment() {
@@ -29,6 +28,7 @@ class AccountFragment : Fragment() {
 
     private lateinit var viewModel: AccountViewModel
     private val recyclerAdapter = GitRepositoryAdapter()
+    private val languageAdapter = LanguageAdapter()
 
 
     override fun onCreateView(
@@ -76,12 +76,18 @@ class AccountFragment : Fragment() {
         val supportActionBar = (activity as AppCompatActivity?)?.supportActionBar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // setup recyclerView
+        // setup recyclerView for git-repos
         binding.repositoryRecycler.adapter = recyclerAdapter
 
+        // setup recyclerView for languages
+        binding.languageRecycler.adapter = languageAdapter
+
         viewModel.repos.observe(viewLifecycleOwner, Observer { list ->
-            val tempAdapter = recyclerAdapter as GitRepositoryAdapter
-            tempAdapter.updateReposList(list)
+            recyclerAdapter.updateReposList(list)
+        })
+
+        viewModel.languages.observe(viewLifecycleOwner, Observer { list ->
+            languageAdapter.updateList(list)
         })
 
         viewModel.getAccount(inputArg.accountName)
