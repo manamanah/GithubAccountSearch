@@ -87,19 +87,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageView
-            android:id="@+id/loading_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/spacing_double"
-            android:src="@drawable/loading_animation"
-            android:contentDescription="@string/loading_img_desc"
-            android:visibility="@{viewModel.status == GitRequestStatus.LOADING ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
         <TextView
             android:id="@+id/status_display"
             android:layout_width="match_parent"

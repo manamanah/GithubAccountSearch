@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -46,20 +45,24 @@ class AccountFragment : Fragment() {
 
         // display information on error or no account
         viewModel.status.observe(viewLifecycleOwner, Observer{status ->
+
             // no account with this name
             if (status == GitRequestStatus.ERROR){
                 binding.statusDisplay.text = resources.getString(R.string.no_account)
-
-                val errorImage = ContextCompat.getDrawable(
-                    activity?.applicationContext ?:
-                    throw NullPointerException("Activity was null"), R.drawable.error_image)
-
-                binding.avatarImg.setImageDrawable(errorImage)
-            } // no public repos found
-            else if (status == GitRequestStatus.SUCCESS && viewModel.repos.value?.size == 0) {
-                binding.statusDisplay.text = resources.getString(R.string.no_repos)
+                binding.avatarImg.setImageResource(R.drawable.error_image)
             }
-            else binding.statusDisplay.visibility = View.GONE
+            else if (status == GitRequestStatus.SUCCESS)
+                binding.statusDisplay.visibility = View.GONE
+        })
+
+        // display info for repo search
+        viewModel.repoStatus.observe(viewLifecycleOwner, Observer { status ->
+            val repoSize = viewModel.repos.value?.size ?: -1
+
+            if (status != GitRequestStatus.LOADING && repoSize <= 0){
+                binding.statusDisplay.text =
+                    resources.getString(R.string.no_repos)
+            }
         })
 
         // set website url for account, if provided

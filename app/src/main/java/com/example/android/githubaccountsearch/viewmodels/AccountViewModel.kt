@@ -14,6 +14,10 @@ import kotlinx.coroutines.launch
 
 class AccountViewModel : ViewModel(){
 
+    private val _repoStatus = MutableLiveData<GitRequestStatus>()
+    val repoStatus : LiveData<GitRequestStatus>
+        get() = _repoStatus
+
     private val _status = MutableLiveData<GitRequestStatus>()
     val status : LiveData<GitRequestStatus>
         get() = _status
@@ -31,26 +35,21 @@ class AccountViewModel : ViewModel(){
         get() = _languages
 
 
-
     fun getAccount(profileName: String) {
         viewModelScope.launch {
             val (account, accountStatus) = Repository.getAccount(profileName)
 
-            if (accountStatus == GitRequestStatus.ERROR) {
-                _status.value = accountStatus
-            }
-            else{
-                _account.value = account
+            _status.value = accountStatus
+            _account.value = account
 
-                if (account != null){
-                    val (repos, reposStatus) = Repository.getAccountRepos(profileName)
+            if (account != null){
+                val (repos, reposStatus) = Repository.getAccountRepos(profileName)
 
-                    _repos.value = repos
-                    _status.value = reposStatus
+                _repos.value = repos
+                _repoStatus.value = reposStatus
 
-                    if (reposStatus == GitRequestStatus.SUCCESS){
-                        calculateLanguageUsage(repos)
-                    }
+                if (reposStatus == GitRequestStatus.SUCCESS){
+                    calculateLanguageUsage(repos)
                 }
             }
         }
@@ -58,6 +57,7 @@ class AccountViewModel : ViewModel(){
 
     fun reset(){
         _status.value = GitRequestStatus.LOADING
+        _repoStatus.value = GitRequestStatus.LOADING
         _account.value = null
         _repos.value = null
     }
