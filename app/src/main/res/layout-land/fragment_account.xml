@@ -13,11 +13,13 @@
             type="com.example.android.githubaccountsearch.viewmodels.AccountViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/account_rootlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.AccountFragment">
+        app:layoutDescription="@xml/account_motion"
+        tools:context=".views.AccountFragment"
+        tools:showPaths="true">
 
         <ImageView
             android:id="@+id/avatar_img"
@@ -100,5 +102,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
