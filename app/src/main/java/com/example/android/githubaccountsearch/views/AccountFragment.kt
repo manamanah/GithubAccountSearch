@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.example.android.githubaccountsearch.R
 import com.example.android.githubaccountsearch.adapters.GitRepositoryAdapter
@@ -24,8 +24,8 @@ import com.example.android.githubaccountsearch.viewmodels.AccountViewModel
 class AccountFragment : Fragment() {
 
     private val inputArg: AccountFragmentArgs by navArgs()
+    private val viewModel: AccountViewModel by viewModels()
 
-    private lateinit var viewModel: AccountViewModel
     private val recyclerAdapter = GitRepositoryAdapter()
     private val languageAdapter = LanguageAdapter()
 
@@ -38,7 +38,6 @@ class AccountFragment : Fragment() {
         val binding: FragmentAccountBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
         binding.lifecycleOwner = this
 
-        viewModel = ViewModelProviders.of(this).get(AccountViewModel::class.java)
         binding.viewModel = viewModel
 
         binding.accountName.text = inputArg.accountName

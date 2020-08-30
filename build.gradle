@@ -1,23 +1,26 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext{
-        appcompat_version = '1.1.0'
-        constraint_version = '2.0.0-beta4'
-        core_ktx_version = '1.1.0'
-        coroutines_version = '1.3.2'
-        espresso_version = '3.2.0'
-        glide_version = '4.10.0'
-        gradle_version = '3.5.3'
-        junit_version = '4.13'
-        kotlin_version = '1.3.61'
-        lifecycle_version = '2.1.0'
-        material_version = '1.2.0-alpha03'
-        moshi_version = '1.9.2'
-        navigation_version = '2.1.0'
-        retrofit2_kotlin_coroutines_version = '0.9.2'
-        retrofit2_version = '2.7.1'
-        test_junit_version = '1.1.1'
+    ext {
+        appcompat_version = "1.2.0"
+        constraint_version = "2.0.1"
+        core_ktx_version = "1.3.1"
+        core_testing_version = "2.1.0"
+        coroutines_version = "1.3.2"
+        espresso_version = "3.3.0"
+        fragment_version = "1.3.0-alpha08"
+        glide_version = "4.11.0"
+        gradle_version = "4.0.1"
+        junit_version = "4.13"
+        kotlin_version = "1.4.0"
+        legacy_support_version = "1.0.0"
+        lifecycle_version = "2.2.0"
+        material_version = "1.3.0-alpha02"
+        moshi_version = "1.9.3"
+        navigation_version = "2.3.0"
+        retrofit2_kotlin_coroutines_version = "0.9.2"
+        retrofit2_version = "2.9.0"
+        test_junit_version = "1.1.2"
     }
 
     repositories {
@@ -25,6 +28,7 @@ buildscript {
         jcenter()
         
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -38,7 +42,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
