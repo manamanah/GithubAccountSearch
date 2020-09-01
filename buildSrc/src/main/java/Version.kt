@@ -1,0 +1,22 @@
+object Version {
+    const val gradle = "4.0.1"
+    const val kotlin = "1.4.0"
+    const val navigation = "2.3.0"
+
+    const val appcompat = "1.2.0"
+    const val constraint = "2.0.1"
+    const val core_ktx = "1.3.1"
+    const val core_testing = "2.1.0"
+    const val coroutines = "1.3.2"
+    const val espresso = "3.3.0"
+    const val fragment = "1.3.0-alpha08"
+    const val glide = "4.11.0"
+    const val junit = "4.13"
+    const val legacy_support = "1.0.0"
+    const val lifecycle = "2.2.0"
+    const val material = "1.3.0-alpha02"
+    const val moshi = "1.9.3"
+    const val retrofit2_kotlin_coroutines = "0.9.2"
+    const val retrofit2 = "2.9.0"
+    const val test_junit = "1.1.2"
+}
