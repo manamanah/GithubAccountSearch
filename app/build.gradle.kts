@@ -1,3 +1,9 @@
+import Lib.implementCoroutines
+import Lib.implementMoshi
+import Lib.implementNavigation
+import Lib.implementRetrofitWithMoshi
+import Lib.implementViewModelLifecycle
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -23,7 +29,12 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             isDebuggable = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+                "proguard-retrofit2-rules.pro",
+                "proguard-okio-rules-pro"
+            )
         }
     }
 
@@ -39,51 +50,51 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    packagingOptions {
+        exclude("META-INF/metadata.kotlin_module")
+        exclude("META-INF/metadata.jvm.kotlin_module")
+    }
 }
 
 dependencies {
     implementation(Lib.kotlinStdLib)
+
     implementation(Lib.appCompat)
     implementation(Lib.coreKtx)
-    implementation(Lib.constraintLayout)
 
-    implementation(Lib.fragment)
+    implementation(Lib.constraintLayout)
+    implementation(Lib.activityArtifact)
+    implementation(Lib.fragmentArtifact)
 
     // MaterialDesign
     implementation(Lib.materialDesign)
 
     // ViewModel & LiveData
-    implementation(Lib.lifeCycle)
-    implementation(Lib.legacyV4)
-    kapt(Lib.lifecyleAnnotation)
+    implementViewModelLifecycle()
 
     // Navigation
-    implementation(Lib.navigationFragment)
-    implementation(Lib.navigationUI)
+    implementNavigation()
 
     // Moshi
-    implementation(Lib.moshi)
-    implementation(Lib.moshiKotlin)
-    kapt(Lib.moshiKotlinAnnotation)
+    implementMoshi()
 
     // Retrofit2
-    implementation(Lib.retrofit)
-    implementation(Lib.retrofitMoshiConverter)
-    implementation(Lib.retrofitCoroutinesAdapter)
+    implementRetrofitWithMoshi()
 
     // Coroutines
-    implementation(Lib.coroutines)
-    implementation(Lib.coroutinesAndroid)
+    implementCoroutines()
 
     // Glide
     implementation(Lib.glide)
 
     // UnitTests
-    testImplementation(UnitTestLib.jUnit)
-    testImplementation(UnitTestLib.archCore)
-    testImplementation(UnitTestLib.coroutines)
+    testImplementation(TestLib.Unit.jUnit)
+    testImplementation(TestLib.Unit.core)
+    testImplementation(TestLib.Unit.coroutines)
 
     // DeviceTests
-    androidTestImplementation(DeviceTestLib.jUnit)
-    androidTestImplementation(DeviceTestLib.espressoCore)
+    androidTestImplementation(TestLib.Device.jUnit)
+    androidTestImplementation(TestLib.Device.espressoCore)
+    androidTestImplementation(TestLib.Device.navigation)
 }
