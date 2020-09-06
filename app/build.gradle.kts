@@ -73,6 +73,9 @@ dependencies {
     // ViewModel & LiveData
     implementViewModelLifecycle()
 
+    // Koin
+    implementation(Lib.koin)
+
     // Navigation
     implementNavigation()
 
@@ -92,6 +95,7 @@ dependencies {
     testImplementation(TestLib.Unit.jUnit)
     testImplementation(TestLib.Unit.core)
     testImplementation(TestLib.Unit.coroutines)
+    testImplementation(TestLib.Unit.koin)
 
     // DeviceTests
     androidTestImplementation(TestLib.Device.jUnit)
