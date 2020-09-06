@@ -10,9 +10,12 @@ import com.example.android.githubaccountsearch.models.Account
 import com.example.android.githubaccountsearch.models.GitRepository
 import com.example.android.githubaccountsearch.models.Language
 import kotlinx.coroutines.launch
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
+class AccountViewModel : ViewModel(), KoinComponent{
 
-class AccountViewModel : ViewModel(){
+    private val repository: Repository by inject()
 
     private val _repoStatus = MutableLiveData<GitRequestStatus>()
     val repoStatus : LiveData<GitRequestStatus>
@@ -37,13 +40,13 @@ class AccountViewModel : ViewModel(){
 
     fun getAccount(profileName: String) {
         viewModelScope.launch {
-            val (account, accountStatus) = Repository.getAccount(profileName)
+            val (account, accountStatus) = repository.getAccount(profileName)
 
             _status.value = accountStatus
             _account.value = account
 
             if (account != null){
-                val (repos, reposStatus) = Repository.getAccountRepos(profileName)
+                val (repos, reposStatus) = repository.getAccountRepos(profileName)
 
                 _repos.value = repos
                 _repoStatus.value = reposStatus

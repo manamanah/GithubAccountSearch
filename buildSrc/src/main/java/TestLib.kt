@@ -4,6 +4,7 @@ object TestLib {
         const val core = "androidx.arch.core:core-testing:${Version.core_testing}"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
         const val jUnit = "junit:junit:${Version.junit}"
+        const val koin = "org.koin:koin-test:${Version.koin}"
     }
 
     object Device {

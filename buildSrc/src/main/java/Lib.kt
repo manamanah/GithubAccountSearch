@@ -28,6 +28,9 @@ object Lib {
     }
     // endregion
 
+    // Koin
+    const val koin = "org.koin:koin-android:${Version.koin}"
+
     // region Navigation
     private const val navigationFragment =
         "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
@@ -73,6 +76,7 @@ object Lib {
         add(implementation, coroutinesAndroid)
     }
     // endregion
+
     // Glide
     const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
 }

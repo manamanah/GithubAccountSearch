@@ -23,11 +23,18 @@ android {
         versionCode = Config.versionCode
         versionName = Config.versionName
         testInstrumentationRunner = Config.testInstrumentationRunner
+
+        buildConfigField("String", "GIT_BASE_URL", Config.baseUrl)
     }
 
     buildTypes {
-        getByName("release") {
+        getByName("debug"){
             isMinifyEnabled = false
+            isDebuggable = true
+        }
+
+        getByName("release") {
+            isMinifyEnabled = true
             isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -73,6 +80,9 @@ dependencies {
     // ViewModel & LiveData
     implementViewModelLifecycle()
 
+    // Koin
+    implementation(Lib.koin)
+
     // Navigation
     implementNavigation()
 
@@ -92,6 +102,7 @@ dependencies {
     testImplementation(TestLib.Unit.jUnit)
     testImplementation(TestLib.Unit.core)
     testImplementation(TestLib.Unit.coroutines)
+    testImplementation(TestLib.Unit.koin)
 
     // DeviceTests
     androidTestImplementation(TestLib.Device.jUnit)

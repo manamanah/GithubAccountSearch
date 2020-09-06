@@ -6,7 +6,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface GithubApiService {
+interface GithubApiRequests {
     @GET("users/{username}")
     fun getAccountAsync(@Path("username")username: String) : Deferred<Account>
 

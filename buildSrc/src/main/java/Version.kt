@@ -13,6 +13,7 @@ object Version {
     const val fragmentArtifact = "1.3.0-alpha08"
     const val glide = "4.11.0"
     const val junit = "4.13"
+    const val koin = "2.2.0-beta-1"
     const val lifecycle = "2.2.0"
     const val material = "1.3.0-alpha02"
     const val moshi = "1.9.3"
