@@ -1,6 +1,5 @@
 package com.example.android.githubaccountsearch.views
 
-
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -65,7 +64,7 @@ class AccountFragment : Fragment() {
         })
 
         // set website url for account, if provided
-        viewModel.account.observe(viewLifecycleOwner, Observer {account ->
+        viewModel.account.observe(viewLifecycleOwner, Observer { account ->
             if (account != null && account.website.isNotEmpty()){
                 val link = HtmlCompat.fromHtml("<a href='${account.website}'>${account.profileName}</a>", HtmlCompat.FROM_HTML_MODE_LEGACY)
                 binding.accountName.movementMethod = LinkMovementMethod.getInstance()

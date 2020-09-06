@@ -8,15 +8,15 @@ import java.util.*
 
 class CalendarAdapter : JsonAdapter<Calendar>() {
 
-    private val dateFormat = SimpleDateFormat("yyyy")
+    private val dateFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+    private val calendar by lazy { Calendar.getInstance() }
 
     @FromJson
     override fun fromJson(reader: JsonReader): Calendar? {
-        synchronized(this){
+        synchronized(this) {
             return try {
                 val dateString = reader.nextString()
-                val date = dateFormat.parse(dateString)
-                val calendar = Calendar.getInstance()
+                val date = dateFormat.parse(dateString) ?: calendar.time
                 calendar.time = date
                 return calendar
             } catch (e: Exception){

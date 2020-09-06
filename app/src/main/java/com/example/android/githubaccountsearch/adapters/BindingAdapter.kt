@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.example.android.githubaccountsearch.R
 
 @BindingAdapter("imageUrl")
-fun setImage(view: ImageView, src: String?){
+fun setImage(view: ImageView, src: String?) {
     when {
         src.isNullOrEmpty() -> {
             // when account is fetched drawable is null

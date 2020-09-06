@@ -8,7 +8,7 @@ import com.example.android.githubaccountsearch.models.Language
 import java.util.*
 
 
-class LanguageAdapter : RecyclerView.Adapter<LanguageAdapter.ViewHolder>(){
+class LanguageAdapter : RecyclerView.Adapter<LanguageAdapter.ViewHolder>() {
 
     private var languages : List<Language> = Collections.emptyList()
 
@@ -22,18 +22,18 @@ class LanguageAdapter : RecyclerView.Adapter<LanguageAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position in 0 until itemCount){
+        if (position in languages.indices) {
             holder.bind(languages[position])
         }
     }
 
-    fun updateList(list: List<Language>){
+    fun updateList(list: List<Language>) {
         languages = list
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding : LanguageItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(languageItem: Language){
+    class ViewHolder(private val binding : LanguageItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(languageItem: Language) {
             binding.viewModel = languageItem
         }
     }

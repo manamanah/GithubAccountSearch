@@ -24,21 +24,21 @@ class GitRepositoryAdapter : RecyclerView.Adapter<GitRepositoryAdapter.ViewHolde
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position in 0 until itemCount){
+        if (position in repositories.indices){
             val item = repositories[position]
             holder.bind(item)
         }
     }
 
-    fun updateReposList(list: List<GitRepository>){
+    fun updateReposList(list: List<GitRepository> ){
         repositories = list
         notifyDataSetChanged()
     }
 
 
-    class ViewHolder(private val binding: RepositoryItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(private val binding: RepositoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item : GitRepository){
+        fun bind(item : GitRepository) {
             binding.viewModel = item
 
             binding.title.movementMethod = LinkMovementMethod.getInstance()
@@ -46,7 +46,8 @@ class GitRepositoryAdapter : RecyclerView.Adapter<GitRepositoryAdapter.ViewHolde
             val link = HtmlCompat.fromHtml("<a href='${item.url}'>${item.name}</a>", HtmlCompat.FROM_HTML_MODE_LEGACY)
             binding.title.text = link
 
-            binding.timeRange.text = "${item.creationYear.get(Calendar.YEAR)} - ${item.lastPushYear.get(Calendar.YEAR)}"
+            val timeRange = "${item.creationYear.get(Calendar.YEAR)} - ${item.lastPushYear.get(Calendar.YEAR)}"
+            binding.timeRange.text = timeRange
         }
     }
 }

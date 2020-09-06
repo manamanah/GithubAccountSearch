@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class AccountViewModel : ViewModel(), KoinComponent{
+class AccountViewModel : ViewModel(), KoinComponent {
 
     private val repository: Repository by inject()
 
@@ -45,29 +45,28 @@ class AccountViewModel : ViewModel(), KoinComponent{
             _status.value = accountStatus
             _account.value = account
 
-            if (account != null){
+            account?.let {
                 val (repos, reposStatus) = repository.getAccountRepos(profileName)
 
                 _repos.value = repos
                 _repoStatus.value = reposStatus
 
-                if (reposStatus == GitRequestStatus.SUCCESS){
+                if (reposStatus == GitRequestStatus.SUCCESS) {
                     calculateLanguageUsage(repos)
                 }
             }
         }
     }
 
-    fun reset(){
+    fun reset() {
         _status.value = GitRequestStatus.LOADING
         _repoStatus.value = GitRequestStatus.LOADING
         _account.value = null
         _repos.value = null
     }
 
-    private fun calculateLanguageUsage(repoList: List<GitRepository>?){
-        if (repoList == null)
-            return
+    private fun calculateLanguageUsage(repoList: List<GitRepository>?) {
+        if (repoList == null) return
 
         val map: MutableMap<String, Int> = mutableMapOf()
         var totalSize = 0.0
@@ -78,8 +77,7 @@ class AccountViewModel : ViewModel(), KoinComponent{
             totalSize += map.getValue(language)
         }
 
-        if (totalSize.equals(0.0))
-            return
+        if (totalSize.equals(0.0)) return
 
         val list = mutableListOf<Language>()
         // calculate language fraction in relation to total-size
