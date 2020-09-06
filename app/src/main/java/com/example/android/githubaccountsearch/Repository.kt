@@ -5,17 +5,13 @@ import com.example.android.githubaccountsearch.enums.GitRequestStatus
 import com.example.android.githubaccountsearch.models.Account
 import com.example.android.githubaccountsearch.models.GitRepository
 import com.example.android.githubaccountsearch.network.GithubApi
+import org.koin.core.KoinComponent
 import java.lang.Exception
 
-object Repository {
-    private const val BASE_URL = "https://api.github.com"
-
-    private val githubApi by lazy {
-        GithubApi(BASE_URL)
-    }
+class Repository(private val githubApi: GithubApi): KoinComponent {
 
     suspend fun getAccount(profileName: String): Pair<Account?, GitRequestStatus> {
-        val deferredAccount = githubApi.retrofitService.getAccountAsync(profileName)
+        val deferredAccount = githubApi.request.getAccountAsync(profileName)
 
         return try {
             val account = deferredAccount.await()
@@ -27,7 +23,7 @@ object Repository {
     }
 
     suspend fun getAccountRepos(profileName: String): Pair<List<GitRepository>?, GitRequestStatus> {
-        val deferredAccountRepos = githubApi.retrofitService.getAccountsReposAsync(profileName)
+        val deferredAccountRepos = githubApi.request.getAccountsReposAsync(profileName)
 
         return try {
             val repos = deferredAccountRepos.await()
