@@ -7,7 +7,6 @@ import Lib.implementViewModelLifecycle
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -60,8 +59,13 @@ android {
     }
 
     packagingOptions {
+        exclude("META-INF/core.kotlin_module")
+        exclude("META-INF/specs.kotlin_module")
+        exclude("META-INF/elements.kotlin_module")
         exclude("META-INF/metadata.kotlin_module")
         exclude("META-INF/metadata.jvm.kotlin_module")
+        exclude("META-INF/kotlinx-metadata.kotlin_module")
+        exclude("META-INF/kotlinx-metadata-jvm.kotlin_module")
     }
 }
 
