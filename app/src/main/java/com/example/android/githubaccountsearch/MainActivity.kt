@@ -1,28 +1,32 @@
 package com.example.android.githubaccountsearch
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation.findNavController
+import com.example.android.githubaccountsearch.databinding.ActivityMainBinding
 import com.example.android.githubaccountsearch.viewmodels.AccountViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: AccountViewModel by viewModels()
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // debugging
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        nav_host_fragment.findNavController().navigateUp()
+        findNavController(this, R.id.nav_host_fragment).navigateUp()
         viewModel.reset()
         super.onOptionsItemSelected(item)
         return true
