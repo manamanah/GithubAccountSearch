@@ -1,6 +1,5 @@
 package com.example.android.githubaccountsearch.views
 
-import androidx.fragment.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.android.githubaccountsearch.R
 import com.example.android.githubaccountsearch.databinding.FragmentInputBinding

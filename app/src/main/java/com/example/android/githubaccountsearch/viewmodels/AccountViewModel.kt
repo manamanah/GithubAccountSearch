@@ -10,8 +10,8 @@ import com.example.android.githubaccountsearch.models.Account
 import com.example.android.githubaccountsearch.models.GitRepository
 import com.example.android.githubaccountsearch.models.Language
 import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class AccountViewModel : ViewModel(), KoinComponent {
 
@@ -73,7 +73,7 @@ class AccountViewModel : ViewModel(), KoinComponent {
 
         // calculate sum of repo-sizes for each language
         repoList.filter { it.language != null }.groupBy { it.language }.forEach { (language, repoList) ->
-            map[language!!] = repoList.sumBy { it.size }
+            map[language!!] = repoList.sumOf { it.size }
             totalSize += map.getValue(language)
         }
 

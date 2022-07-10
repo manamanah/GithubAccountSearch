@@ -5,10 +5,8 @@ import com.example.android.githubaccountsearch.enums.GitRequestStatus
 import com.example.android.githubaccountsearch.models.Account
 import com.example.android.githubaccountsearch.models.GitRepository
 import com.example.android.githubaccountsearch.network.GithubApi
-import org.koin.core.KoinComponent
-import java.lang.Exception
 
-class Repository(private val githubApi: GithubApi): KoinComponent {
+class Repository(private val githubApi: GithubApi) {
 
     suspend fun getAccount(profileName: String): Pair<Account?, GitRequestStatus> {
         val deferredAccount = githubApi.request.getAccountAsync(profileName)
