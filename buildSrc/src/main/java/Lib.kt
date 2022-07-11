@@ -10,10 +10,12 @@ object Lib {
     // material design
     const val materialDesign = "com.google.android.material:material:${Version.material}"
 
-    // viewModel & liveData
+    // viewModel & lifeCycle
     const val viewModel =  "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycle}"
-    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Version.lifecycle}"
     const val lifeCycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Version.lifecycle}"
+
+    // logging
+    const val timber = "com.jakewharton.timber:timber:${Version.timber}"
 
     // koin
     const val koin = "io.insert-koin:koin-android:${Version.koin}"
@@ -33,6 +35,9 @@ object Lib {
     const val retrofitCoroutinesAdapter =
         "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Version.retrofit2_kotlin_coroutines}"
 
+    // okhttp + logging interceptor
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Version.okhttp}"
+    const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Version.okhttp}"
 
     // coroutines
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutines}"
@@ -41,4 +46,6 @@ object Lib {
 
     // glide
     const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
+    // Skip this if you don't want to use integration libraries or configure Glide
+    const val glideCompile = "com.github.bumptech.glide:compiler:${Version.glide}"
 }

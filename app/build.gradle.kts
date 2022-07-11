@@ -16,12 +16,10 @@ android {
         versionCode = Config.versionCode
         versionName = Config.versionName
         testInstrumentationRunner = Config.testInstrumentationRunner
-
-        buildConfigField("String", "GIT_BASE_URL", Config.baseUrl)
     }
 
     buildTypes {
-        getByName("debug"){
+        getByName("debug") {
             isMinifyEnabled = false
             isDebuggable = true
         }
@@ -34,13 +32,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
                 "proguard-retrofit2-rules.pro",
+                "proguard-glide-rules.pro",
                 "proguard-okio-rules-pro"
             )
         }
     }
 
     buildFeatures {
-        dataBinding = true
         viewBinding = true
     }
 
@@ -72,10 +70,12 @@ dependencies {
     // material design
     implementation(Lib.materialDesign)
 
-    // viewModel & liveData
+    // viewModel & lifecycle
     implementation(Lib.viewModel)
-    implementation(Lib.liveData)
     implementation(Lib.lifeCycleCompiler)
+
+    // logging
+    implementation(Lib.timber)
 
     // koin
     implementation(Lib.koin)
@@ -94,12 +94,17 @@ dependencies {
     implementation(Lib.retrofitMoshiConverter)
     implementation(Lib.retrofitCoroutinesAdapter)
 
+    // okhttp + logging
+    implementation(Lib.okhttp)
+    implementation(Lib.okhttpLoggingInterceptor)
+
     // coroutines
     implementation(Lib.coroutines)
     implementation(Lib.coroutinesAndroid)
 
     // glide
     implementation(Lib.glide)
+    kapt(Lib.glideCompile)
 
     // unit/instr tests
     testImplementation(TestLib.Unit.jUnit)

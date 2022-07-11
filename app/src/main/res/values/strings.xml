@@ -4,11 +4,15 @@
     <string name="input_hint">github account name</string>
     <string name="submit_button_label">ok</string>
     <string name="input_title">Curious?</string>
-    <string name="input_description">Enter the  github account name\nyou want to look up!</string>
+    <string name="input_description">Enter the github account name\nyou want to look up!</string>
     <string name="avatar_desc">The avatar image of the github account.</string>
     <string name="invalid_input">Provide valid input for account lookup!\n(letters, numbers, hyphen)</string>
     <string name="no_license">No license info</string>
     <string name="no_account">There does not exist \nan account \nwith this name.</string>
     <string name="no_repos">This account does not have \nany (public) repositories.</string>
     <string name="loading_img_desc">Loading status image</string>
+    <string name="github_base_Url" translatable="false">https://api.github.com</string>
+    <string name="input_fragment_label">Github account search</string>
+    <string name="account_fragment_label">Github account</string>
+    <string name="invalid_input_edittext">Invalid input</string>
 </resources>

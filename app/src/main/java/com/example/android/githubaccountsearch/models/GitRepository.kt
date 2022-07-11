@@ -4,28 +4,28 @@ import com.squareup.moshi.Json
 import java.util.*
 
 data class GitRepository(
-     val name: String,
+    val name: String,
 
-     val description: String?,
+    val description: String?,
 
-     @Json(name = "html_url")
-     val url: String,
+    @Json(name = "html_url")
+    val url: String,
 
-     val language: String?,
+    val language: String?,
 
-     @Json(name = "stargazers_count")
-     val starsCount: Int = 0,
+    @Json(name = "stargazers_count")
+    val starsCount: Int = 0,
 
-     @Json(name = "forks_count")
-     val forksCount: Int = 0,
+    @Json(name = "forks_count")
+    val forksCount: Int = 0,
 
-     val license: License?,
+    val license: License?,
 
-     @Json(name = "created_at")
-     val creationYear: Calendar,
+    @Json(name = "created_at")
+    val creationYear: Calendar,
 
-     @Json(name = "pushed_at")
-     val lastPushYear: Calendar,
+    @Json(name = "pushed_at")
+    val lastPushYear: Calendar,
 
-     val size: Int
+    val size: Int
 )

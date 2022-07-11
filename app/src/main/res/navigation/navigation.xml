@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/inputFragment"
-        android:name="com.example.android.githubaccountsearch.views.InputFragment"
-        android:label="fragment_input"
-        tools:layout="@layout/fragment_input" >
+        android:name="com.example.android.githubaccountsearch.ui.input.InputFragment"
+        android:label="@string/input_fragment_label"
+        tools:layout="@layout/fragment_input">
         <action
             android:id="@+id/action_inputFragment_to_accountFragment"
             app:destination="@id/accountFragment"
@@ -17,13 +17,14 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_from_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@+id/inputFragment" />
+            app:popUpTo="@+id/inputFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.android.githubaccountsearch.views.AccountFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" >
+        android:name="com.example.android.githubaccountsearch.ui.githubaccount.GithubAccountFragment"
+        android:label="@string/account_fragment_label"
+        tools:layout="@layout/fragment_github_account">
         <argument
             android:name="accountName"
             app:argType="string" />

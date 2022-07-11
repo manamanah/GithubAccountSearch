@@ -15,6 +15,9 @@ object Version {
 
     const val navigation = "2.5.0"
 
+    // logging
+    const val timber = "5.0.1"
+
     // di
     const val koin = "3.2.0"
 
@@ -24,6 +27,7 @@ object Version {
 
     const val moshi = "1.13.0"
 
+    const val okhttp = "4.10.0"
 
     // not yet supports KSP, so staying with kapt
     const val glide = "4.13.2"

@@ -2,7 +2,7 @@ package com.example.android.githubaccountsearch.models
 
 import com.squareup.moshi.Json
 
-data class Account(
+data class GithubAccount(
     @Json(name = "login")
     val profileName: String,
 
