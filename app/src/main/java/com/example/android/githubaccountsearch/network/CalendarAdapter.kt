@@ -1,4 +1,4 @@
-package com.example.android.githubaccountsearch.adapters
+package com.example.android.githubaccountsearch.network
 
 import android.util.Log
 import com.squareup.moshi.*
@@ -19,7 +19,7 @@ class CalendarAdapter : JsonAdapter<Calendar>() {
                 val date = dateFormat.parse(dateString) ?: calendar.time
                 calendar.time = date
                 return calendar
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 Log.e(this.javaClass.simpleName, "Exception parsing date: $e")
                 null
             }

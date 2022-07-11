@@ -11,4 +11,7 @@
     <string name="no_account">Es existiert kein Github-Account\nunter diesem Namen.</string>
     <string name="no_repos">Dieses Github-Konto besitzt \nkeine (öffentlichen) Repositories.</string>
     <string name="loading_img_desc">Ladestatus-Bild</string>
+    <string name="input_fragment_label">Github Account Suche</string>
+    <string name="account_fragment_label">Github Account</string>
+    <string name="invalid_input_edittext">Ungültige Eingabe</string>
 </resources>

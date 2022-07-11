@@ -1,9 +1,3 @@
-import Lib.implementCoroutines
-import Lib.implementMoshi
-import Lib.implementNavigation
-import Lib.implementRetrofitWithMoshi
-import Lib.implementViewModelLifecycle
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -12,105 +6,115 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Config.compileSdkVersion)
+    compileSdk = Config.targetSdkVersion
     buildToolsVersion = Config.buildToolsVersion
 
     defaultConfig {
         applicationId = Config.applicationId
-        minSdkVersion(Config.minSdkVersion)
-        targetSdkVersion(Config.targetSdkVersion)
+        minSdk = Config.minSdkVersion
+        targetSdk = Config.targetSdkVersion
         versionCode = Config.versionCode
         versionName = Config.versionName
         testInstrumentationRunner = Config.testInstrumentationRunner
-
-        buildConfigField("String", "GIT_BASE_URL", Config.baseUrl)
     }
 
     buildTypes {
-        getByName("debug"){
+        getByName("debug") {
             isMinifyEnabled = false
             isDebuggable = true
         }
 
         getByName("release") {
             isMinifyEnabled = true
+            isShrinkResources = true
             isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
                 "proguard-retrofit2-rules.pro",
+                "proguard-glide-rules.pro",
                 "proguard-okio-rules-pro"
             )
         }
     }
 
     buildFeatures {
-        dataBinding = true
         viewBinding = true
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     packagingOptions {
-        exclude("META-INF/core.kotlin_module")
-        exclude("META-INF/specs.kotlin_module")
-        exclude("META-INF/elements.kotlin_module")
-        exclude("META-INF/metadata.kotlin_module")
-        exclude("META-INF/metadata.jvm.kotlin_module")
-        exclude("META-INF/kotlinx-metadata.kotlin_module")
-        exclude("META-INF/kotlinx-metadata-jvm.kotlin_module")
+        resources.excludes += "DebugProbesKt.bin"
+        resources.excludes += "META-INF/gradle/incremental.annotation.processors"
     }
 }
 
 dependencies {
-    implementation(Lib.kotlinStdLib)
+    implementation(Lib.kotlin)
 
     implementation(Lib.appCompat)
-    implementation(Lib.coreKtx)
+    implementation(Lib.core)
 
     implementation(Lib.constraintLayout)
-    implementation(Lib.activityArtifact)
-    implementation(Lib.fragmentArtifact)
+    implementation(Lib.activity)
+    implementation(Lib.fragment)
 
-    // MaterialDesign
+    // material design
     implementation(Lib.materialDesign)
 
-    // ViewModel & LiveData
-    implementViewModelLifecycle()
+    // viewModel & lifecycle
+    implementation(Lib.viewModel)
+    implementation(Lib.lifeCycleCompiler)
 
-    // Koin
+    // logging
+    implementation(Lib.timber)
+
+    // koin
     implementation(Lib.koin)
 
-    // Navigation
-    implementNavigation()
+    // navigation
+    implementation(Lib.navigation)
+    implementation(Lib.navigationUI)
 
-    // Moshi
-    implementMoshi()
+    // moshi
+    implementation(Lib.moshi)
+    implementation(Lib.moshiKotlin)
+    implementation(Lib.moshiKotlinAnnotation)
 
-    // Retrofit2
-    implementRetrofitWithMoshi()
+    // retrofit2
+    implementation(Lib.retrofit)
+    implementation(Lib.retrofitMoshiConverter)
+    implementation(Lib.retrofitCoroutinesAdapter)
 
-    // Coroutines
-    implementCoroutines()
+    // okhttp + logging
+    implementation(Lib.okhttp)
+    implementation(Lib.okhttpLoggingInterceptor)
 
-    // Glide
+    // coroutines
+    implementation(Lib.coroutines)
+    implementation(Lib.coroutinesAndroid)
+
+    // glide
     implementation(Lib.glide)
+    kapt(Lib.glideCompile)
 
-    // UnitTests
+    // unit/instr tests
     testImplementation(TestLib.Unit.jUnit)
     testImplementation(TestLib.Unit.core)
     testImplementation(TestLib.Unit.coroutines)
-    testImplementation(TestLib.Unit.koin)
 
-    // DeviceTests
+    // on device tests
     androidTestImplementation(TestLib.Device.jUnit)
     androidTestImplementation(TestLib.Device.espressoCore)
     androidTestImplementation(TestLib.Device.navigation)
+
+    debugImplementation(TestLib.Device.fragmentInIsolation)
 }

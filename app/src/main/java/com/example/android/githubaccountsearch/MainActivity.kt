@@ -1,19 +1,17 @@
 package com.example.android.githubaccountsearch
 
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.android.githubaccountsearch.databinding.ActivityMainBinding
-import com.example.android.githubaccountsearch.viewmodels.AccountViewModel
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-
-    private val viewModel: AccountViewModel by viewModels()
-
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +21,21 @@ class MainActivity : AppCompatActivity() {
 
         // debugging
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        // Retrieve NavController from the NavHostFragment
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+        setupActionBarWithNavController(navController)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        findNavController(this, R.id.nav_host_fragment).navigateUp()
-        viewModel.reset()
-        super.onOptionsItemSelected(item)
-        return true
+    /**
+     * we setup action bar with nav controller
+     * => we are responsible for calling navigateUp in this method
+     */
+    override fun onSupportNavigateUp(): Boolean {
+        Timber.d("navigate up")
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

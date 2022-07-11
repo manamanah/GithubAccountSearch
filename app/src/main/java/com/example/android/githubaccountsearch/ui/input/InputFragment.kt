@@ -1,6 +1,5 @@
-package com.example.android.githubaccountsearch.views
+package com.example.android.githubaccountsearch.ui.input
 
-import androidx.fragment.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.android.githubaccountsearch.R
 import com.example.android.githubaccountsearch.databinding.FragmentInputBinding
+import timber.log.Timber
 
 
 class InputFragment : Fragment() {
@@ -20,20 +20,14 @@ class InputFragment : Fragment() {
     private val binding
         get() = _binding!!
 
+    // region lifecycle methods
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentInputBinding.inflate(inflater, container, false)
 
-        // adapt actionbar
-        val supportActionBar = (activity as? AppCompatActivity)?.supportActionBar
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
-        binding.inputRootlayout.setOnClickListener {
-            closeKeyboard()
-        }
-
+        binding.inputRootlayout.setOnClickListener { closeKeyboard() }
         return binding.root
     }
 
@@ -42,15 +36,16 @@ class InputFragment : Fragment() {
 
         binding.submitButton.setOnClickListener {
             val profileName = binding.input.text?.toString()?.trim().orEmpty()
+            Timber.d("provided profile name $profileName")
 
-            if (!isValidInput(profileName)){
+            if (!isValidInput(profileName)) {
+                binding.input.error = resources.getString(R.string.invalid_input_edittext)
                 Toast.makeText(
                     activity,
                     context?.getString(R.string.invalid_input),
                     Toast.LENGTH_LONG
-                ). show()
-            }
-            else {
+                ).show()
+            } else {
                 binding.input.text = null
                 closeKeyboard()
 
@@ -61,23 +56,24 @@ class InputFragment : Fragment() {
         }
     }
 
-    private fun isValidInput(input: String): Boolean {
-        return !(input.isEmpty() || input.any {
-                    !(it.isLetter() || it.isDigit() || it == '-')
-                })
-    }
-
     override fun onDestroyView() {
-        binding.submitButton.setOnClickListener(null)
-        binding.inputRootlayout.setOnClickListener(null)
-
-        _binding = null
-
         super.onDestroyView()
+        _binding = null
+    }
+    // endregion
+
+    private fun isValidInput(input: String): Boolean {
+        return input.isNotEmpty() && !input.any {
+            !(it.isLetter() || it.isDigit() || it == '-')
+        }
     }
 
-    private fun closeKeyboard(){
-        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        inputManager?.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+    private fun closeKeyboard() {
+        val inputManager =
+            activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        inputManager?.hideSoftInputFromWindow(
+            activity?.currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
     }
 }
