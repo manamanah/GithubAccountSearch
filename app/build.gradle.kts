@@ -119,3 +119,6 @@ dependencies {
 
     debugImplementation(TestLib.Device.fragmentInIsolation)
 }
+
+// run ktlint format (auto-fix errors + report) on every build
+tasks.getByPath(":app:preBuild").dependsOn("ktlintFormat")

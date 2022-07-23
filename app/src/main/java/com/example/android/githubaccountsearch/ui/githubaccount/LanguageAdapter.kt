@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.githubaccountsearch.databinding.LanguageItemBinding
 import com.example.android.githubaccountsearch.models.Language
 
-
 class LanguageAdapter : ListAdapter<Language, LanguageAdapter.ViewHolder>(LanguageDiffUtils()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -23,7 +23,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
-
 class GithubAccountFragment : Fragment() {
 
     private val inputArg: GithubAccountFragmentArgs by navArgs()
@@ -38,10 +37,10 @@ class GithubAccountFragment : Fragment() {
     private val binding
         get() = _binding!!
 
-
     // region lifecycle methods
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGithubAccountBinding.inflate(inflater, container, false)

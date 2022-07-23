@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.githubaccountsearch.databinding.RepositoryItemBinding
 import com.example.android.githubaccountsearch.models.GitRepository
-import java.util.*
-
+import java.util.Calendar
 
 class GitRepositoryAdapter :
     ListAdapter<GitRepository, GitRepositoryAdapter.ViewHolder>(GitRepositoryDiffUtils()) {
@@ -75,15 +74,15 @@ class GitRepositoryAdapter :
 
         override fun areContentsTheSame(oldItem: GitRepository, newItem: GitRepository): Boolean {
             return oldItem.name == newItem.name &&
-                    oldItem.description == newItem.description &&
-                    oldItem.language == newItem.language &&
-                    oldItem.starsCount == newItem.starsCount &&
-                    oldItem.forksCount == newItem.forksCount &&
-                    oldItem.url == newItem.url &&
-                    oldItem.license == newItem.license &&
-                    oldItem.creationYear == newItem.creationYear &&
-                    oldItem.lastPushYear == newItem.lastPushYear &&
-                    oldItem.size == newItem.size
+                oldItem.description == newItem.description &&
+                oldItem.language == newItem.language &&
+                oldItem.starsCount == newItem.starsCount &&
+                oldItem.forksCount == newItem.forksCount &&
+                oldItem.url == newItem.url &&
+                oldItem.license == newItem.license &&
+                oldItem.creationYear == newItem.creationYear &&
+                oldItem.lastPushYear == newItem.lastPushYear &&
+                oldItem.size == newItem.size
         }
     }
 }

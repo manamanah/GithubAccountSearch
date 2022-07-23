@@ -14,9 +14,11 @@ fun getBaseOkHttpClient(): OkHttpClient =
         .connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS)
         .apply {
             if (BuildConfig.DEBUG) {
-                addInterceptor(HttpLoggingInterceptor().apply {
-                    setLevel(HttpLoggingInterceptor.Level.BASIC)
-                })
+                addInterceptor(
+                    HttpLoggingInterceptor().apply {
+                        setLevel(HttpLoggingInterceptor.Level.BASIC)
+                    }
+                )
             }
         }
         .build()

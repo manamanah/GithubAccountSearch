@@ -1,7 +1,7 @@
 package com.example.android.githubaccountsearch.models
 
 import com.squareup.moshi.Json
-import java.util.*
+import java.util.Calendar
 
 data class GitRepository(
     val name: String,

@@ -13,7 +13,6 @@ import com.example.android.githubaccountsearch.R
 import com.example.android.githubaccountsearch.databinding.FragmentInputBinding
 import timber.log.Timber
 
-
 class InputFragment : Fragment() {
 
     private var _binding: FragmentInputBinding? = null
@@ -22,7 +21,8 @@ class InputFragment : Fragment() {
 
     // region lifecycle methods
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentInputBinding.inflate(inflater, container, false)

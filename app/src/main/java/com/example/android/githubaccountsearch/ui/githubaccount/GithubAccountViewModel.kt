@@ -1,6 +1,5 @@
 package com.example.android.githubaccountsearch.ui.githubaccount
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubaccountsearch.models.GitRepository
