@@ -32,6 +32,9 @@ object Version {
     // not yet supports KSP, so staying with kapt
     const val glide = "4.13.2"
 
+    // static code analysis
+    const val ktlint = "10.3.0"
+
     // testing
     // todo when adding tests: unit/integr tests: JUnit5; instr. test Kaspresso
     const val junit = "4.13.2"
